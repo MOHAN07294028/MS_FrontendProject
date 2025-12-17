@@ -20,6 +20,7 @@ export default function RegistrationComponent() {
   const [skeletoActive, setSkeletonActive] = useState(true)
 
   const onSubmit = async (values) => {
+    setSkeletonActive(true)
     const params = {
       ...values,
       userId: parseInt(values.userId),
@@ -32,7 +33,8 @@ export default function RegistrationComponent() {
         content: 'Registration Successfully, Please login and enjoy...',
         onOk: () => {
           reset({})
-          router.push('/pages/login')
+          setSkeletonActive(false)
+          router.push('/pages/auth/login')
         },
       })
     }
@@ -41,14 +43,16 @@ export default function RegistrationComponent() {
         title: 'Error Occured',
         content: 'Registration UnSuccessfully!',
         onOk: () => {
-          router.push('/pages/registration')
+          setSkeletonActive(false)
+          router.push('/pages/auth/registration')
         },
       })
     }
   }
 
   const handleClickLoginPage = () => {
-    router.push('/pages/login')
+    setSkeletonActive(true)
+    router.push('/pages/auth/login')
   }
 
   useEffect(() => {

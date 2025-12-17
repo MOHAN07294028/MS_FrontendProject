@@ -46,9 +46,17 @@ a {
   background-position: center;
 }
 
+.center-align{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .proj-backgroundColor{
   background: linear-gradient(45deg,  #8b7878b8, #70e5d3a8, #dd7fbc91);
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   html {

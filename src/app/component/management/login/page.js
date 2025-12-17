@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "@/Validations/loginSchema";
 import apiConfig from "@/services/api";
 import Password from "@/CoreComponent/Password/page";
-const {success,error} = Modal;
+const { success, error } = Modal;
 
 export default function LoginComponent() {
     const { control, handleSubmit, reset } = useForm(({
@@ -18,13 +18,14 @@ export default function LoginComponent() {
     }));
     const [skeletoActive, setSkeletonActive] = useState(true)
 
-
     const router = useRouter();
     const handleClickRegistrationPage = () => {
-        router.push('/pages/registration')
+        setSkeletonActive(true)
+        router.push('/pages/auth/registration')
     }
 
     const onSubmit = async (values) => {
+        setSkeletonActive(true)
         const params = {
             ...values
         }
@@ -35,7 +36,8 @@ export default function LoginComponent() {
                 content: 'Login Success!',
                 onOk: () => {
                     reset({})
-                    router.push('/pages/home')
+                    setSkeletonActive(false)
+                    router.push('/pages/management/home')
                 },
             })
 
@@ -46,7 +48,8 @@ export default function LoginComponent() {
                 content: 'Login UnSuccessfully!',
                 onOk: () => {
                     reset({})
-                    router.push('/pages/login')
+                    setSkeletonActive(false)
+                    router.push('/pages/auth/login')
                 },
             })
 
